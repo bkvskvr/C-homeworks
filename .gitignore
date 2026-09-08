@@ -1,0 +1,15 @@
+*.o
+*.obj
+*.out
+*.exe
+*.app
+
+build/
+bin/
+out/
+
+Thumbs.db
+.DS_Store
+
+.vscode/
+.idea/
