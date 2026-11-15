@@ -1,0 +1,16 @@
+<table>
+<tr>
+<td>Apple</td>
+<td>Banana</td>
+<td>Orange</td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+<td>Apple</td>
+<td>Banana
+<td>Orange</td>
+</tr>
+</table>
