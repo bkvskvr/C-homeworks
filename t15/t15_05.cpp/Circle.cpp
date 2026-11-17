@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <stdexcept>
 
 using namespace std;
 
@@ -9,28 +10,34 @@ const double PI = acos(-1.0);
 const double EPS = 1e-9;
 
 Circle::Circle(double x_, double y_, double r_) {
+    if (!isfinite(x_) || !isfinite(y_) ||
+        !isfinite(r_) || r_ <= 0)
+        throw invalid_argument("Invalid circle!");
+
     x = x_;
     y = y_;
-    r = (r_ > 0) ? r_ : 1;
+    r = r_;
 }
 
-void Circle::input() {
+bool Circle::input() {
+    double x_, y_, r_;
+
     cout << "Enter x, y, r: ";
 
-    double x_, y_, r_;
-    cin >> x_ >> y_ >> r_;
+    if (!(cin >> x_ >> y_ >> r_))
+        return false;
 
-    if (!cin)
-        return;
-
-    if (r_ <= 0) {
-        cout << "Invalid radius!" << endl;
-        return;
+    if (!isfinite(x_) || !isfinite(y_) ||
+        !isfinite(r_) || r_ <= 0) {
+        cout << "Invalid circle!" << endl;
+        return false;
     }
 
     x = x_;
     y = y_;
     r = r_;
+
+    return true;
 }
 
 void Circle::output() const {
@@ -56,8 +63,12 @@ int Circle::intersection(const Circle& c, double points[2][2]) const {
 
     double d = sqrt(dx * dx + dy * dy);
 
-    if (d < EPS)
+    if (d < EPS) {
+        if (fabs(r - c.r) < EPS)
+            return -1;
+
         return 0;
+    }
 
     if (d > r + c.r + EPS)
         return 0;

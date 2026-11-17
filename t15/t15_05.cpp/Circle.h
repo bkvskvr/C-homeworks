@@ -9,7 +9,7 @@ public:
 
     Circle(double x_, double y_, double r_);
 
-    void input();
+    bool input();
     void output() const;
 
     double diameter() const;

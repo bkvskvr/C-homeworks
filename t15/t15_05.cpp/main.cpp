@@ -30,7 +30,6 @@ void centerOfMass(const vector<Circle>& circles) {
 
 int main() {
     vector<Circle> circles;
-
     int choice;
 
     do {
@@ -42,23 +41,24 @@ int main() {
         cout << "0. Exit" << endl;
 
         cout << "Choice: ";
-        cin >> choice;
 
-        if (!cin)
+        if (!(cin >> choice))
             break;
 
         switch (choice) {
 
         case 1: {
             Circle c;
-            c.input();
 
-            if (!cin)
-                break;
+            if (c.input()) {
+                circles.push_back(c);
+                cout << "Circle added!" << endl;
+            }
+            else if (!cin) {
+                cout << "Invalid input!" << endl;
+                return 1;
+            }
 
-            circles.push_back(c);
-
-            cout << "Circle added!" << endl;
             break;
         }
 
@@ -66,7 +66,9 @@ int main() {
             int i;
 
             cout << "Enter circle number: ";
-            cin >> i;
+
+            if (!(cin >> i))
+                return 1;
 
             if (i >= 1 && i <= (int)circles.size()) {
                 circles.erase(circles.begin() + i - 1);
@@ -107,7 +109,9 @@ int main() {
             int i, j;
 
             cout << "Enter two circle numbers: ";
-            cin >> i >> j;
+
+            if (!(cin >> i >> j))
+                return 1;
 
             if (i < 1 || j < 1 ||
                 i > (int)circles.size() ||
@@ -122,6 +126,11 @@ int main() {
             int n = circles[i - 1].intersection(
                 circles[j - 1], points
             );
+
+            if (n == -1) {
+                cout << "Circles coincide!" << endl;
+                break;
+            }
 
             cout << "Number of intersection points: "
                  << n << endl;
