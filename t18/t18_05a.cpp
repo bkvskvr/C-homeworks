@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+namespace homework18 {
 
 template<typename T>
 class Array {
@@ -56,6 +57,10 @@ public:
         }
     }
 };
+
+}
+
+using namespace homework18;
 
 int main() {
     int n;

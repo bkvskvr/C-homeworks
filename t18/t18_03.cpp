@@ -5,6 +5,7 @@
 #include <string>
 
 using namespace std;
+namespace homework18 {
 
 template<typename T>
 class BlackBox {
@@ -65,6 +66,10 @@ public:
         return n;
     }
 };
+
+}
+
+using namespace homework18;
 
 int main() {
     srand(time(0));
